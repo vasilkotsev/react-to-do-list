@@ -1,10 +1,18 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const ToDoItem = (props) => {
+const ToDoItem = ({ text, isActive }) => {
+  console.log(!isActive);
   return (
     <li className="to_do_item">
-      <span>sjkfsjkfhksf kjhsdfkjsfkjsfkh jkhsdfkjsfkjsdh kjhsdkjhsdksjdh</span>
+      <input type="checkbox" id={text} checked={!isActive} />
+      <label htmlFor={text} />
+      <h2
+        className={isActive ? "to_do_item_title" : "to_do_item_title item_done"}
+      >
+        {text}
+      </h2>
+      <button className="to_do_item_btn_delete" />
     </li>
   );
 };

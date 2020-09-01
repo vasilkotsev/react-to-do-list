@@ -15,13 +15,32 @@ class ToDoSection extends React.Component {
 
   render() {
     const { items } = this.state;
+    const { length: countItems } = this.state.items;
+
+    function checkActiveItems(items) {
+      return items.isActive;
+    }
+
+    function checkInactiveItems(items) {
+      return !items.isActive;
+    }
+
+    const activeItems = items.filter(checkActiveItems);
+    const inactiveItems = items.filter(checkInactiveItems);
+    console.log(inactiveItems);
+
     return (
       <React.Fragment>
         <h1 className="heading">todos</h1>
         <div className="to_do_section">
           <ToDoInput />
-          {items.length > 0 && <ToDoList />}
-          {items.length > 0 && <ToDoInfoFilterBar count={items.length} />}
+          {countItems > 0 && <ToDoList items={items} />}
+          {countItems > 0 && (
+            <ToDoInfoFilterBar
+              countActive={activeItems.length}
+              countInactive={inactiveItems.length}
+            />
+          )}
         </div>
       </React.Fragment>
     );
