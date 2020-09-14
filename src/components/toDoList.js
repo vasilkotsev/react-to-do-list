@@ -3,7 +3,6 @@ import ToDoItem from "./toDoItem";
 import PropTypes from "prop-types";
 
 const ToDoList = ({ items }) => {
-  console.log(items);
   return (
     <ul className="to_do_list">
       {items.map((item) => (

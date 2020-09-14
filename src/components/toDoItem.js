@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const ToDoItem = ({ text, isActive }) => {
-  console.log(!isActive);
   return (
     <li className="to_do_item">
       <input type="checkbox" id={text} checked={!isActive} />
