@@ -1,12 +1,12 @@
 import React from "react";
-import ToDoTable from "./components/toDoSection";
+import ToDoSection from "./components/ToDoSection";
 import "./App.css";
 
 function App() {
   return (
     <React.Fragment>
       <main className="container">
-        <ToDoTable />
+        <ToDoSection />
       </main>
     </React.Fragment>
   );

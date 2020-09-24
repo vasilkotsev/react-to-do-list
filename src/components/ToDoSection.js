@@ -1,7 +1,7 @@
 import React from "react";
-import ToDoInput from "./toDoInput";
-import ToDoInfoFilterBar from "./toDoInfoFilterBar";
-import ToDoList from "./toDoList";
+import ToDoInput from "./ToDoInput";
+import ToDoInfoFilterBar from "./ToDoInfoFilterBar";
+import ToDoList from "./ToDoList";
 import { ALL, ACTIVE, COMPLETED } from "../constants/filterStatus";
 import { toDoItems } from "./mockedData/toDoItems";
 
@@ -21,9 +21,9 @@ class ToDoSection extends React.Component {
     console.log("DidMount");
   }
 
-  checkActiveItems = (items) => items.isActive;
+  checkActiveItems = (item) => item.isActive;
 
-  checkCompletedItems = (items) => !items.isActive;
+  checkCompletedItems = (item) => !item.isActive;
 
   handleAllItems = () => {
     const allItems = this.toDoAllItems.filter((items) => items);
@@ -36,8 +36,8 @@ class ToDoSection extends React.Component {
   };
 
   handleCompletedItems = () => {
-    const inactiveItems = this.toDoAllItems.filter((items) => !items.isActive);
-    this.setState({ items: inactiveItems, filter: COMPLETED });
+    const completedItems = this.toDoAllItems.filter((items) => !items.isActive);
+    this.setState({ items: completedItems, filter: COMPLETED });
   };
 
   handleClearCompletedItems = () => {
@@ -58,17 +58,15 @@ class ToDoSection extends React.Component {
         <div className="to_do_section">
           <ToDoInput />
           {countItems > 0 && <ToDoList items={items} />}
-          {countItems > 0 && (
-            <ToDoInfoFilterBar
-              countActive={activeItems.length}
-              countInactive={completedItems.length}
-              onAllItems={this.handleAllItems}
-              onActiveItems={this.handleActiveItems}
-              onCompletedItems={this.handleCompletedItems}
-              onClearCompletedItems={this.handleClearCompletedItems}
-              filter={this.state.filter}
-            />
-          )}
+          <ToDoInfoFilterBar
+            countActive={activeItems.length}
+            countCompleted={completedItems.length}
+            onAllItemsClick={this.handleAllItems}
+            onActiveItemsClick={this.handleActiveItems}
+            onCompletedItemsClick={this.handleCompletedItems}
+            onClearCompletedItemsClick={this.handleClearCompletedItems}
+            filter={this.state.filter}
+          />
         </div>
       </React.Fragment>
     );

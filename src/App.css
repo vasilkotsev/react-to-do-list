@@ -162,14 +162,21 @@ ul {
   margin-bottom: 0;
   color: #777;
 }
-.to_do_filters a {
+.to_do_filters button {
   color: inherit;
   margin-right: 10px;
   padding: 3px;
   border-radius: 3px;
+  background: none;
+  outline: none;
   border: 1px solid transparent;
+
 }
-.to_do_filters a:hover {
+
+.to_do_filters button:focus {
+  outline: none;
+}
+.to_do_filters button:hover {
   border: 1px solid #af5b5e;
   text-decoration: none;
   color: #777;

@@ -1,5 +1,5 @@
 import React from "react";
-import ToDoItem from "./toDoItem";
+import ToDoItem from "./ToDoItem";
 import PropTypes from "prop-types";
 
 const ToDoList = ({ items }) => {
