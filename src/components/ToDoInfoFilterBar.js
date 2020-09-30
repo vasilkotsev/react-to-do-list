@@ -17,14 +17,14 @@ const ToDoInfoFilterBar = ({
     <div className="to_do_info_filter_bar">
       {filter === COMPLETED ? (
         <Pluralization
-          one={"item completed"}
+          one={`${countCompleted} item completed`}
           zero={"No items"}
           multiple={`${countCompleted} items completed`}
           count={countCompleted}
         />
       ) : (
         <Pluralization
-          one={"item left"}
+          one={`${countActive} item left`}
           zero={"No items"}
           multiple={`${countActive} items left`}
           count={countActive}

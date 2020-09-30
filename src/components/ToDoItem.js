@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const ToDoItem = ({ text, isActive }) => {
+const ToDoItem = ({ text, isActive, onDelete, item }) => {
   return (
     <li className="to_do_item">
       <input type="checkbox" id={text} checked={!isActive} />
@@ -11,7 +11,10 @@ const ToDoItem = ({ text, isActive }) => {
       >
         {text}
       </h2>
-      <button className="to_do_item_btn_delete" />
+      <button
+        className="to_do_item_btn_delete"
+        onClick={() => onDelete(item)}
+      />
     </li>
   );
 };

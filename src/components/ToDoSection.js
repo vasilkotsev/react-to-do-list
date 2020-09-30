@@ -8,6 +8,8 @@ import { toDoItems } from "./mockedData/toDoItems";
 class ToDoSection extends React.Component {
   state = {
     items: [],
+    activeItems: [],
+    completedItems: [],
     filter: ALL,
   };
 
@@ -26,23 +28,29 @@ class ToDoSection extends React.Component {
   checkCompletedItems = (item) => !item.isActive;
 
   handleAllItems = () => {
-    const allItems = this.toDoAllItems.filter((items) => items);
+    const allItems = this.toDoAllItems.filter((item) => item);
     this.setState({ items: allItems, filter: ALL });
   };
 
   handleActiveItems = () => {
-    const activeItems = this.toDoAllItems.filter((items) => items.isActive);
+    const activeItems = this.toDoAllItems.filter((item) => item.isActive);
     this.setState({ items: activeItems, filter: ACTIVE });
   };
 
   handleCompletedItems = () => {
-    const completedItems = this.toDoAllItems.filter((items) => !items.isActive);
+    const completedItems = this.toDoAllItems.filter((item) => !item.isActive);
     this.setState({ items: completedItems, filter: COMPLETED });
   };
 
   handleClearCompletedItems = () => {
     const items = this.toDoAllItems.filter((items) => items.isActive);
     this.setState({ items, filter: ALL });
+  };
+
+  handleDelete = (item) => {
+    const items = this.toDoAllItems;
+    items.splice(items.indexOf(item), 1);
+    this.setState({ items });
   };
 
   render() {
@@ -57,7 +65,9 @@ class ToDoSection extends React.Component {
         <h1 className="heading">TODOS</h1>
         <div className="to_do_section">
           <ToDoInput />
-          {countItems > 0 && <ToDoList items={items} />}
+          {countItems > 0 && (
+            <ToDoList items={items} onDelete={this.handleDelete} />
+          )}
           <ToDoInfoFilterBar
             countActive={activeItems.length}
             countCompleted={completedItems.length}
